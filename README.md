@@ -15,6 +15,7 @@
 | Grammy_Menu | v1.1.1 | https://deno.land/x/grammy_menu@v1.1.1/menu.ts |
 | DotEnv | v3.2.0 | https://deno.land/x/dotenv@v3.2.0/mod.ts |
 | Deno_Std | v0.170.0 |  https://deno.land/std@0.170.0/ |
+| ytdl-core | v0.1.1 | https://deno.land/x/ytdl_core@v0.1.1/mod.ts |
 
 </div>
 
