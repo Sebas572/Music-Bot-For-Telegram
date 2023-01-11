@@ -4,6 +4,7 @@ import { getSingles, getStreamSingle } from '../getSingles.ts'
 import { Readable } from 'https://deno.land/std@0.170.0/streams/mod.ts'
 import { bot, menu } from '../../index.ts'
 import { Menu, MenuRange } from 'https://deno.land/x/grammy_menu@v1.1.1/menu.ts'
+import config from '../config/dotenv.ts'
 
 /**
  * The constant "ID_SELECTION" allows us to know the list of
@@ -75,6 +76,13 @@ const sendListMusic = async(ctx:Context, data:Info):Promise<void> => {
     options: optionsSingles,
     message_id: sendOptions.message_id
   });
+
+  setTimeout(() => {
+    if(ID_SELECTION.get(data.ID).message_id !== sendOptions.message_id) return false;
+    
+    ID_SELECTION.delete(data.ID);
+    bot.api.deleteMessage(data.ID, sendOptions.message_id);
+  }, (1000*60)*config.WAIT_RESPONSE);
 }
 
 export { sendListMusic, sendMusic, ID_SELECTION };

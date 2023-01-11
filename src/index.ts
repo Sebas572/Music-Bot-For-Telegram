@@ -1,7 +1,7 @@
 import { Bot, InputFile, Context, InlineKeyboard } from 'https://deno.land/x/grammy@v1.13.0/mod.ts'
 import { Info, OptionsMusic, ContentOptions } from './helpers/types/bridge.ts'
 import { Menu, MenuRange } from 'https://deno.land/x/grammy_menu@v1.1.1/menu.ts'
-import { sendListMusic, sendMusic } from './helpers/interactions/message.ts'
+import { sendListMusic, sendMusic, ID_SELECTION } from './helpers/interactions/message.ts'
 import * as path from 'https://deno.land/std/path/mod.ts'
 import config from './helpers/config/dotenv.ts'
 import * as colors from 'https://deno.land/std/fmt/colors.ts'
@@ -36,6 +36,8 @@ bot.on('message:text', async(ctx) => {
     const send = (await ctx.reply(`Search 🔎 ${message}`, {
       reply_to_message_id: ctx.msg.message_id
     }));
+
+    if(ID_SELECTION.has(ID)) bot.api.deleteMessage(ID, ID_SELECTION.get(ID).message_id);
 
     const __Arguments__:Info = {
       ID,
