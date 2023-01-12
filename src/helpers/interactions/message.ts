@@ -78,6 +78,7 @@ const sendListMusic = async(ctx:Context, data:Info):Promise<void> => {
   });
 
   setTimeout(() => {
+    if(!ID_SELECTION.has(data.ID)) return false;
     if(ID_SELECTION.get(data.ID).message_id !== sendOptions.message_id) return false;
     
     ID_SELECTION.delete(data.ID);
